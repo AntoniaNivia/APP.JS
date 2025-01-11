@@ -13,10 +13,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// npx prisma migrate dev
+// npm start
+
 model User {
   id    Int     @id @default(autoincrement()) 
   email String  @unique  
-  nome_completo  String 
+  nomeCompleto  String 
   senha String
 
   @@map("users") 
