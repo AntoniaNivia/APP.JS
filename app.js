@@ -6,6 +6,8 @@ import userRouter from './router/users.js';
 const app = Express()
 app.use(Express.json())
 
+const cors = require('cors');
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send("App online!")
@@ -19,3 +21,4 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`app online na porta ${PORT}`)
 });
+
