@@ -3,8 +3,6 @@ import Express from 'express';
 import logger from './middlewares/logger.js';
 import userRouter from './router/users.js';
 
-const cors = require('cors');
-
 const app = Express()
 app.use(Express.json())
 
