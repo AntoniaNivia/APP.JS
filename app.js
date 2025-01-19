@@ -1,21 +1,23 @@
-import cors from 'cors';
-import Express from 'express';
-import logger from './middlewares/logger.js';
-import userRouter from './router/users.js';
+import cors from 'cors'
+import Express from 'express'
+import logger from './middlewares/logger.js'
+import userRouter from './router/users.js'
 
 const app = Express()
+app.use(cors())
 app.use(Express.json())
 
+app.use(logger)
 
 app.get('/', (req, res) => {
-  res.send("App online!")
+    res.send('Hello World!')
 })
 
-app.use(logger)
+
 app.use(userRouter)
 
-const PORT = process.env.PORT || 3000
 
+const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
-  console.log(`app online na porta ${PORT}`)
+    console.log('app online na porta 3000')
 });
