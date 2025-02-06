@@ -1,22 +1,22 @@
 import { PrismaClient } from '@prisma/client'
-import { Router } from 'express'
+import { Router } from 'express';
+const saltRounds = 10;
 
 const userRouter = Router()
 const prisma = new PrismaClient()
 
 userRouter.get('/users', async (req, res) => {
-  const users = await prisma.user.findMany({});
-  res.json(users)
+  try {
+    const users = await prisma.user.findMany({});
+    res.json(users)
+  } catch (err) {
+    res.status(400).send('Erro ao buscar usuários')
+  }
 })
 
-userRouter.post('/users', async (req, res) => {
-  const user = req.body
-  const userSaved = await prisma.user.create(
-    {
-      data: user
-    }
-  )
-  res.send(userSaved)
+userRouter.put('/users/me', async () => {
+  const idUser = req.userId
+  await prisma.user.update()
 })
 
 export default userRouter
